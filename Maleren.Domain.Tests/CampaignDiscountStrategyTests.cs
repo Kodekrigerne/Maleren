@@ -11,6 +11,8 @@ namespace Maleren.Domain.Tests
         [Test]
         public void CalculateDiscount_Given_Order_Returns_AtLeastZero()
         {
+
+            //>> Moqs
             // Arrange
             var product = Product.Create(5.99m, ProductCategory.Pensler);
             var lineItem = LineItem.Create(product, 5);
@@ -24,4 +26,8 @@ namespace Maleren.Domain.Tests
             Assert.That(actual, Is.AtLeast(0));
         }
     }
+
+    //>> Test af specifikke beløb
+
+    //>> Test for ordre med 0 lineItems
 }

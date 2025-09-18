@@ -14,7 +14,7 @@ namespace Maleren.Domain.Discount
         ///  - Calculated discount is a positive value<br />
         /// </remarks>
         /// <param name="order">The order to calculate a discount for</param>
-        /// <returns>A decimal representing the discount amount</returns>
+        /// <returns>A decimal of value at least 0 representing the discount amount</returns>
         decimal CalculateDiscount(Order order);
     }
 }

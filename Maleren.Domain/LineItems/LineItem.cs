@@ -2,11 +2,13 @@
 
 namespace Maleren.Domain.LineItems
 {
+    //>> Tilføj invarianter
     public class LineItem
     {
         public Product Product { get; private set; }
         public int Quantity { get; private set; }
 
+        //>> Uncomment, null!;
         //protected LineItem() { }
 
         private LineItem(Product product, int quantity)
@@ -20,6 +22,7 @@ namespace Maleren.Domain.LineItems
             return new LineItem(product, quantity);
         }
 
+        //>> Tilføj summary, conditions
         public decimal CalculatePrice() => Product.Price * Quantity;
     }
 }

@@ -2,11 +2,13 @@
 
 namespace Maleren.Domain.Orders
 {
+    //>> Tilføj invarianter
     public class Order
     {
         public IEnumerable<LineItem> LineItems { get; private set; }
         public DateTime OrderDate { get; private set; }
 
+        //Uncomment, null!;
         //protected Order() { }
 
         private Order(IEnumerable<LineItem> lineItems, DateTime orderDate)

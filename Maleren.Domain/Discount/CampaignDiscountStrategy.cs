@@ -3,6 +3,8 @@ using Maleren.Domain.Products;
 
 namespace Maleren.Domain.Discount
 {
+    //>> Summary her
+    //>> Tilføj invarianter (fx endtime før starttime), procent positiv
     public class CampaignDiscountStrategy : IDiscountStrategy
     {
         public ProductCategory ProductCategory { get; private set; }
@@ -10,9 +12,11 @@ namespace Maleren.Domain.Discount
         public DateTime EndTime { get; private set; }
         public decimal Percent { get; private set; }
 
-        protected CampaignDiscountStrategy() { }
+        //>> Uncomment
+        //protected CampaignDiscountStrategy() { }
 
-        //private CampaignDiscountStrategy() { }
+        //>> Tilføj constructor parameters
+        private CampaignDiscountStrategy() { }
 
         public static CampaignDiscountStrategy Create()
         {
