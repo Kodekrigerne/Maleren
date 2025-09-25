@@ -12,7 +12,7 @@ namespace Maleren.Domain.Tests
         public void CalculateDiscount_Given_Order_Returns_AtLeastZero()
         {
 
-            //>> Moqs
+            //TODO: Fiksturer på alle object creations
             // Arrange
             var product = Product.Create(5.99m, ProductCategory.Pensler);
             var lineItem = LineItem.Create(product, 5);
@@ -27,7 +27,7 @@ namespace Maleren.Domain.Tests
         }
     }
 
-    //>> Test af specifikke beløb
+    //TODO: Test af specifikke beløb
 
-    //>> Test for ordre med 0 lineItems
+    //TODO: Test for ordre med 0 lineItems
 }
