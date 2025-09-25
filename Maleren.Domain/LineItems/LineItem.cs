@@ -3,13 +3,14 @@
 namespace Maleren.Domain.LineItems
 {
     //TODO: Tilføj invarianter
-    public class LineItem
+    public class LineItem : BaseEntity
     {
         public Product Product { get; private set; }
         public int Quantity { get; private set; }
 
-        //TODO: Uncomment, null!;, eller pragma
-        //protected LineItem() { }
+#pragma warning disable CS8618 
+        protected LineItem() { }
+#pragma warning restore CS8618 
 
         private LineItem(Product product, int quantity)
         {

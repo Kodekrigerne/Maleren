@@ -5,22 +5,26 @@ namespace Maleren.Domain.Discount
 {
     //>> Summary her
     //>> Tilføj invarianter (fx endtime før starttime), procent positiv
-    public class CampaignDiscountStrategy : IDiscountStrategy
+    public class CampaignDiscountStrategy : BaseEntity, IDiscountStrategy 
     {
-        public ProductCategory ProductCategory { get; private set; }
-        public DateTime StartTime { get; private set; }
-        public DateTime EndTime { get; private set; }
-        public decimal Percent { get; private set; }
+        public ProductCategory ProductCategory { get; protected set; }
+        public DateTime StartTime { get; protected set; }
+        public DateTime EndTime { get; protected set; }
+        public decimal Percent { get; protected set; }
+        
+        protected CampaignDiscountStrategy() { }
 
-        //>> Uncomment
-        //protected CampaignDiscountStrategy() { }
-
-        //>> Tilføj constructor parameters
-        private CampaignDiscountStrategy() { }
-
-        public static CampaignDiscountStrategy Create()
+        private CampaignDiscountStrategy(ProductCategory productCategory, DateTime startTime, DateTime endTime, decimal percent)
         {
-            return new CampaignDiscountStrategy();
+            ProductCategory = productCategory;
+            StartTime = startTime;
+            EndTime = endTime;
+            Percent = percent;
+        }
+
+        public static CampaignDiscountStrategy Create(ProductCategory productCategory, DateTime startTime, DateTime endTime, decimal percent)
+        {
+            return new CampaignDiscountStrategy(productCategory, startTime, endTime, percent);
         }
 
         decimal IDiscountStrategy.CalculateDiscount(Order order)

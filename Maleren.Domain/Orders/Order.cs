@@ -4,24 +4,26 @@ using Maleren.Domain.LineItems;
 namespace Maleren.Domain.Orders
 {
     //TODO: Tilføj invarianter
-    public class Order
+    public class Order : BaseEntity
     {
         public IEnumerable<LineItem> LineItems { get; protected set; }
         public DateTime OrderDate { get; protected set; }
-        public Customer Customer { get; protected set; }
+        public BaseCustomer Customer { get; protected set; }
 
-        //TODO: Uncomment, null!;, eller pragma
-        //protected Order() { }
+#pragma warning disable CS8618 
+        protected Order() { }
+#pragma warning restore CS8618 
 
-        private Order(IEnumerable<LineItem> lineItems, DateTime orderDate)
+        private Order(IEnumerable<LineItem> lineItems, DateTime orderDate, BaseCustomer customer)
         {
             LineItems = lineItems;
             OrderDate = orderDate;
+            Customer = customer;
         }
 
-        public static Order Create(IEnumerable<LineItem> lineItems, DateTime orderDate)
+        public static Order Create(IEnumerable<LineItem> lineItems, DateTime orderDate, BaseCustomer customer)
         {
-            return new Order(lineItems, orderDate);
+            return new Order(lineItems, orderDate, customer);
         }
 
         public decimal CalculateOrderTotal()

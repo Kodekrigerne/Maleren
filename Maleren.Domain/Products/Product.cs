@@ -1,13 +1,12 @@
 ﻿namespace Maleren.Domain.Products
 {
     //TODO: Tilføj invarianter
-    public class Product
+    public class Product : BaseEntity
     {
         public decimal Price { get; private set; }
         public ProductCategory Category { get; private set; }
 
-        //TODO: Uncomment, null!;, eller pragma
-        //protected Product() { }
+        protected Product() { }
 
         private Product(decimal price, ProductCategory category)
         {
