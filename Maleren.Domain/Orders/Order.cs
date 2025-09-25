@@ -1,12 +1,14 @@
-﻿using Maleren.Domain.LineItems;
+﻿using Maleren.Domain.Customers;
+using Maleren.Domain.LineItems;
 
 namespace Maleren.Domain.Orders
 {
     //TODO: Tilføj invarianter
     public class Order
     {
-        public IEnumerable<LineItem> LineItems { get; private set; }
-        public DateTime OrderDate { get; private set; }
+        public IEnumerable<LineItem> LineItems { get; protected set; }
+        public DateTime OrderDate { get; protected set; }
+        public Customer Customer { get; protected set; }
 
         //TODO: Uncomment, null!;, eller pragma
         //protected Order() { }
@@ -20,6 +22,11 @@ namespace Maleren.Domain.Orders
         public static Order Create(IEnumerable<LineItem> lineItems, DateTime orderDate)
         {
             return new Order(lineItems, orderDate);
+        }
+
+        public decimal CalculateOrderTotal()
+        {
+            return LineItems.Sum(item => item.CalculatePrice());
         }
     }
 }
