@@ -1,17 +1,17 @@
 ﻿using Maleren.Domain.Orders;
 using Maleren.Domain.Products;
 
-namespace Maleren.Domain.Discount
+namespace Maleren.Domain.Discounts.DiscountStrategies
 {
     //>> Summary her
     //>> Tilføj invarianter (fx endtime før starttime), procent positiv
-    public class CampaignDiscountStrategy : BaseEntity, IDiscountStrategy 
+    public class CampaignDiscountStrategy : BaseEntity, IDiscountStrategy
     {
         public ProductCategory ProductCategory { get; protected set; }
         public DateTime StartTime { get; protected set; }
         public DateTime EndTime { get; protected set; }
         public decimal Percent { get; protected set; }
-        
+
         protected CampaignDiscountStrategy() { }
 
         private CampaignDiscountStrategy(ProductCategory productCategory, DateTime startTime, DateTime endTime, decimal percent)
@@ -27,9 +27,9 @@ namespace Maleren.Domain.Discount
             return new CampaignDiscountStrategy(productCategory, startTime, endTime, percent);
         }
 
-        decimal IDiscountStrategy.CalculateDiscount(Order order)
+        Discount IDiscountStrategy.CalculateDiscount(Order order)
         {
-            var discount = 0m;
+            var sum = 0m;
 
             foreach (var lineItem in order.LineItems)
             {
@@ -37,11 +37,11 @@ namespace Maleren.Domain.Discount
                     && order.OrderDate > StartTime
                     && order.OrderDate < EndTime)
                 {
-                    discount += lineItem.CalculatePrice() * Percent;
+                    sum += lineItem.CalculatePrice() * Percent;
                 }
             }
 
-            return discount;
+            return new Discount(GetType().Name, sum, sum > 0);
         }
     }
 }

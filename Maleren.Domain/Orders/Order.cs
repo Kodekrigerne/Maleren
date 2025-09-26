@@ -1,4 +1,4 @@
-﻿using Maleren.Domain.Customers;
+﻿using Maleren.Domain.Discounts;
 using Maleren.Domain.LineItems;
 
 namespace Maleren.Domain.Orders
@@ -8,20 +8,21 @@ namespace Maleren.Domain.Orders
     {
         public IEnumerable<LineItem> LineItems { get; protected set; }
         public DateTime OrderDate { get; protected set; }
-        public BaseCustomer Customer { get; protected set; }
+        public OrderCustomer Customer { get; protected set; }
+        public Discount? Discount { get; protected set; }
 
 #pragma warning disable CS8618 
         protected Order() { }
 #pragma warning restore CS8618 
 
-        private Order(IEnumerable<LineItem> lineItems, DateTime orderDate, BaseCustomer customer)
+        private Order(IEnumerable<LineItem> lineItems, DateTime orderDate, OrderCustomer customer)
         {
             LineItems = lineItems;
             OrderDate = orderDate;
             Customer = customer;
         }
 
-        public static Order Create(IEnumerable<LineItem> lineItems, DateTime orderDate, BaseCustomer customer)
+        public static Order Create(IEnumerable<LineItem> lineItems, DateTime orderDate, OrderCustomer customer)
         {
             return new Order(lineItems, orderDate, customer);
         }
@@ -29,6 +30,11 @@ namespace Maleren.Domain.Orders
         public decimal CalculateOrderTotal()
         {
             return LineItems.Sum(item => item.CalculatePrice());
+        }
+
+        public void GetDiscount(IDiscountCalculatorService discountCalculatorService)
+        {
+            Discount = discountCalculatorService.GetBestDiscount(this);
         }
     }
 }

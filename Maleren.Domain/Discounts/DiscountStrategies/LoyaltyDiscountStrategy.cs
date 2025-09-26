@@ -1,13 +1,15 @@
 ﻿using Maleren.Domain.Customers;
 using Maleren.Domain.Orders;
 
-namespace Maleren.Domain.Discount
+namespace Maleren.Domain.Discounts.DiscountStrategies
 {
     public class LoyaltyDiscountStrategy : BaseEntity, IDiscountStrategy
     {
+        private ICustomerOrdersService? _customerOrdersService;
+
         public int NoOfOrders { get; protected set; }
         public decimal MinPriceOfOrder { get; protected set; }
-        public TimeSpan NoOfMonths { get; protected set; } = TimeSpan.FromDays(120);
+        public TimeSpan NoOfMonths { get; protected set; }
         public decimal Percent { get; protected set; }
 
         protected LoyaltyDiscountStrategy() { }
@@ -25,19 +27,21 @@ namespace Maleren.Domain.Discount
             return new LoyaltyDiscountStrategy(noOfOrders, minPriceOfOrder, noOfMonths, percent);
         }
 
-        decimal IDiscountStrategy.CalculateDiscount(Order order)
+        Discount IDiscountStrategy.CalculateDiscount(Order order)
         {
-            var customer = order.Customer;
-            var orders = customer.Orders;
+            // TODO: Add Expection
+            if (_customerOrdersService is null) throw new ArgumentException();
 
-            if (customer is not B2cCustomer) return 0;
+            var orders = _customerOrdersService.GetOrders(order.Customer.Id);
+
+            if (order.Customer.CustomerType != CustomerType.B2C) return new Discount(GetType().Name);
 
             if (orders.Count(o => o.OrderDate >= order.OrderDate - NoOfMonths
                                   && o.CalculateOrderTotal() >= MinPriceOfOrder) >= NoOfOrders)
             {
-                return order.CalculateOrderTotal() * Percent;
+                return new Discount(GetType().Name, order.CalculateOrderTotal() * Percent, true);
             }
-            return 0;
+            return new Discount(GetType().Name);
         }
     }
 }

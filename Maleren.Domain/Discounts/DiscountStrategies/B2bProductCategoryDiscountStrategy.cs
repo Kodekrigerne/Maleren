@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Maleren.Domain.Customers;
+﻿using Maleren.Domain.Customers;
 using Maleren.Domain.Orders;
 using Maleren.Domain.Products;
 
-namespace Maleren.Domain.Discount
+namespace Maleren.Domain.Discounts.DiscountStrategies
 {
     public class B2bProductCategoryDiscountStrategy : IDiscountStrategy
     {
-        public B2bCustomer Customer { get; protected set; }
+        public Customer Customer { get; protected set; }
         public ProductCategory ProductCategory { get; protected set; }
         public decimal Percent { get; protected set; }
 
@@ -19,21 +14,22 @@ namespace Maleren.Domain.Discount
         protected B2bProductCategoryDiscountStrategy() { }
 #pragma warning restore CS8618
 
-        private B2bProductCategoryDiscountStrategy(B2bCustomer customer, ProductCategory productCategory, decimal percent)
+        private B2bProductCategoryDiscountStrategy(Customer customer, ProductCategory productCategory, decimal percent)
         {
             Customer = customer;
             ProductCategory = productCategory;
             Percent = percent;
         }
 
-        public static B2bProductCategoryDiscountStrategy Create(B2bCustomer customer, ProductCategory productCategory, decimal percent)
+        public static B2bProductCategoryDiscountStrategy Create(Customer customer, ProductCategory productCategory, decimal percent)
         {
             return new B2bProductCategoryDiscountStrategy(customer, productCategory, percent);
         }
 
-        decimal IDiscountStrategy.CalculateDiscount(Order order)
+        Discount IDiscountStrategy.CalculateDiscount(Order order)
         {
-            if (order.Customer.Id != Customer.Id) return 0;
+            if (order.Customer.CustomerType != CustomerType.B2B || order.Customer.Id != Customer.Id)
+                return new Discount(GetType().Name);
 
             var sum = 0m;
 
@@ -45,7 +41,7 @@ namespace Maleren.Domain.Discount
                 }
             }
 
-            return sum;
+            return new Discount(GetType().Name, sum, sum > 0);
         }
     }
 }
