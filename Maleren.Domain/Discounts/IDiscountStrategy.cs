@@ -1,6 +1,6 @@
 ﻿using Maleren.Domain.Orders;
 
-namespace Maleren.Domain.Discount
+namespace Maleren.Domain.Discounts
 {
     public interface IDiscountStrategy
     {
@@ -15,6 +15,6 @@ namespace Maleren.Domain.Discount
         /// </remarks>
         /// <param name="order">The order to calculate a discount for</param>
         /// <returns>A decimal of value at least 0 representing the discount amount</returns>
-        decimal CalculateDiscount(Order order);
+        Discount CalculateDiscount(Order order);
     }
 }
