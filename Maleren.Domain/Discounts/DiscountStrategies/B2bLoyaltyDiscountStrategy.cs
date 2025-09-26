@@ -5,6 +5,7 @@ namespace Maleren.Domain.Discounts.DiscountStrategies
 {
     public class B2bLoyaltyDiscountStrategy : IDiscountStrategy
     {
+        private ICustomerOrdersService? _customerOrdersService;
         public Customer Customer { get; protected set; }
         public int NoOfOrders { get; protected set; }
         public decimal MinPriceOfOrder { get; protected set; }
@@ -31,7 +32,10 @@ namespace Maleren.Domain.Discounts.DiscountStrategies
 
         Discount IDiscountStrategy.CalculateDiscount(Order order)
         {
-            var orders = order.Customer.Orders;
+            // TODO: Add Exception 
+            if (_customerOrdersService is null) throw new ArgumentException();
+
+            var orders = _customerOrdersService.GetOrders(order.Customer.Id);
 
             if (order.Customer.CustomerType != CustomerType.B2B || Customer.Id != order.Customer.Id)
                 return new Discount(GetType().Name);
@@ -43,6 +47,11 @@ namespace Maleren.Domain.Discounts.DiscountStrategies
             }
 
             return new Discount(GetType().Name);
+        }
+
+        public void SetCustomerOrdersService(ICustomerOrdersService customerOrdersService)
+        {
+            _customerOrdersService = customerOrdersService;
         }
     }
 }

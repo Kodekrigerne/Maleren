@@ -2,5 +2,5 @@
 
 namespace Maleren.Domain.Orders
 {
-    public record OrderCustomer(CustomerType CustomerType);
+    public record OrderCustomer(Guid Id, CustomerType CustomerType);
 }

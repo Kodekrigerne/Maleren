@@ -5,6 +5,8 @@ namespace Maleren.Domain.Discounts.DiscountStrategies
 {
     public class LoyaltyDiscountStrategy : BaseEntity, IDiscountStrategy
     {
+        private ICustomerOrdersService? _customerOrdersService;
+
         public int NoOfOrders { get; protected set; }
         public decimal MinPriceOfOrder { get; protected set; }
         public TimeSpan NoOfMonths { get; protected set; }
@@ -27,7 +29,10 @@ namespace Maleren.Domain.Discounts.DiscountStrategies
 
         Discount IDiscountStrategy.CalculateDiscount(Order order)
         {
-            var orders = order.Customer.Orders;
+            // TODO: Add Expection
+            if (_customerOrdersService is null) throw new ArgumentException();
+
+            var orders = _customerOrdersService.GetOrders(order.Customer.Id);
 
             if (order.Customer.CustomerType != CustomerType.B2C) return new Discount(GetType().Name);
 
