@@ -36,5 +36,7 @@ namespace Maleren.Domain.Orders
         {
             Discount = discountCalculatorService.GetBestDiscount(this);
         }
+
+        //TODO: Add method for order after discount. Check for null/discount inactive.
     }
 }

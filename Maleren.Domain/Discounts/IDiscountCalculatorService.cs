@@ -4,6 +4,6 @@ namespace Maleren.Domain.Discounts
 {
     public interface IDiscountCalculatorService
     {
-        Discount GetBestDiscount(Order order);
+        Discount? GetBestDiscount(Order order);
     }
 }

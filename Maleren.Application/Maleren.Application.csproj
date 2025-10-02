@@ -10,4 +10,8 @@
     <Folder Include="Discount\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Maleren.Domain\Maleren.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
