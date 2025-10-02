@@ -5,12 +5,14 @@ namespace Maleren.Domain.Discounts.DiscountStrategies
 {
     public class B2nDiscountStrategy : IDiscountStrategy
     {
+        const decimal Percent = 0.1m;
+
         public Discount CalculateDiscount(Order order)
         {
             if (order.Customer.CustomerType != CustomerType.B2N)
-                return new Discount(GetType().Name, 0, false);
+                return new Discount(GetType().Name);
 
-            return new Discount(GetType().Name, order.CalculateOrderTotal() * 0.1m, true);
+            return new Discount(GetType().Name, order.CalculateOrderTotal() * Percent, true);
         }
     }
 }
