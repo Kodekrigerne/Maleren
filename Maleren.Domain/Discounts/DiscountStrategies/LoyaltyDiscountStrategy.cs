@@ -32,9 +32,9 @@ namespace Maleren.Domain.Discounts.DiscountStrategies
             // TODO: Add Expection
             if (_customerOrdersService is null) throw new ArgumentException();
 
-            var orders = _customerOrdersService.GetOrders(order.Customer.Id);
-
             if (order.Customer.CustomerType != CustomerType.B2C) return new Discount(GetType().Name);
+
+            var orders = _customerOrdersService.GetOrders(order.Customer.Id);
 
             if (orders.Count(o => o.OrderDate >= order.OrderDate - NoOfMonths
                                   && o.CalculateOrderTotal() >= MinPriceOfOrder) >= NoOfOrders)
