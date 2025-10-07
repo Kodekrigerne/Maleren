@@ -1,7 +1,7 @@
-﻿//using Maleren.Domain.Discount;
-//using Maleren.Domain.LineItems;
-//using Maleren.Domain.Orders;
-//using Maleren.Domain.Products;
+﻿using Maleren.Domain.Discount;
+using Maleren.Domain.LineItems;
+using Maleren.Domain.Orders;
+using Maleren.Domain.Products;
 
 //namespace Maleren.Domain.Tests
 //{

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36511.14 d17.14
+VisualStudioVersion = 17.14.36511.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maleren.Domain", "Maleren.Domain\Maleren.Domain.csproj", "{785BD62E-BBAC-4E23-9432-5D0DEE952800}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maleren.Ports.Driving", "Maleren.Ports.Driving\Maleren.Ports.Driving.csproj", "{6C28420F-D57C-48B7-9D5D-5351D1EB5F3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maleren.Domain.Tests", "Maleren.Domain.Tests\Maleren.Domain.Tests.csproj", "{30FF0B54-360C-482E-AC6B-71C5C19DC6F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maleren.CrossCut", "Maleren.CrossCut\Maleren.CrossCut.csproj", "{DA1A23F8-9644-47DE-BCDD-463DC7CAF3F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{30FF0B54-360C-482E-AC6B-71C5C19DC6F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30FF0B54-360C-482E-AC6B-71C5C19DC6F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30FF0B54-360C-482E-AC6B-71C5C19DC6F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA1A23F8-9644-47DE-BCDD-463DC7CAF3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA1A23F8-9644-47DE-BCDD-463DC7CAF3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA1A23F8-9644-47DE-BCDD-463DC7CAF3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA1A23F8-9644-47DE-BCDD-463DC7CAF3F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

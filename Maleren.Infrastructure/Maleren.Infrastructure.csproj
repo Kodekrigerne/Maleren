@@ -10,4 +10,13 @@
     <Folder Include="Discount\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Maleren.Application\Maleren.Application.csproj" />
+    <ProjectReference Include="..\Maleren.Domain\Maleren.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
