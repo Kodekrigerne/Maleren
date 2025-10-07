@@ -1,4 +1,6 @@
-﻿namespace Maleren.Domain.Products
+﻿using Maleren.CrossCut;
+
+namespace Maleren.Domain.Products
 {
     //TODO: Tilføj invarianter
     public class Product : BaseEntity

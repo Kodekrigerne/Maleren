@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Maleren.CrossCut\Maleren.CrossCut.csproj" />
     <ProjectReference Include="..\Maleren.Domain\Maleren.Domain.csproj" />
+    <ProjectReference Include="..\Maleren.Ports.Driving\Maleren.Ports.Driving.csproj" />
   </ItemGroup>
 
 </Project>

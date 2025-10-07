@@ -1,4 +1,5 @@
-﻿using Maleren.Domain.Discount;
+﻿using Maleren.CrossCut;
+using Maleren.Domain.Discount;
 using Maleren.Domain.LineItems;
 using Maleren.Domain.Orders;
 using Maleren.Domain.Products;

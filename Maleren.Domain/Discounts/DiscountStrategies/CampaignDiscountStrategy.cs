@@ -1,5 +1,5 @@
-﻿using Maleren.Domain.Orders;
-using Maleren.Domain.Products;
+﻿using Maleren.CrossCut;
+using Maleren.Domain.Orders;
 
 namespace Maleren.Domain.Discounts.DiscountStrategies
 {

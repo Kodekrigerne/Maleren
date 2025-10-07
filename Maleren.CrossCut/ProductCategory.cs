@@ -1,4 +1,4 @@
-﻿namespace Maleren.Domain.Products
+﻿namespace Maleren.CrossCut
 {
     public enum ProductCategory
     {
