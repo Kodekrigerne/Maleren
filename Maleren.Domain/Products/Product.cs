@@ -23,15 +23,11 @@ namespace Maleren.Domain.Products
             return new Product(price, category);
         }
 
-        public void UpdatePrice(decimal price)
+        public void Update(decimal price, ProductCategory category)
         {
             if (price < 0) throw new ProductNegativePriceException("Price must be zero or positive");
 
             Price = price;
-        }
-
-        public void UpdateCategory(ProductCategory category)
-        {
             Category = category;
         }
     }
