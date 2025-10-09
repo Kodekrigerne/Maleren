@@ -1,4 +1,5 @@
-﻿using Maleren.Domain.Discounts;
+﻿using Maleren.Domain.Customers;
+using Maleren.Domain.Discounts;
 using Maleren.Domain.LineItems;
 
 namespace Maleren.Domain.Orders
@@ -15,14 +16,14 @@ namespace Maleren.Domain.Orders
         protected Order() { }
 #pragma warning restore CS8618 
 
-        private Order(IEnumerable<LineItem> lineItems, DateTime orderDate, OrderCustomer customer)
+        private Order(IEnumerable<LineItem> lineItems, DateTime orderDate, Customer customer)
         {
             LineItems = lineItems;
             OrderDate = orderDate;
-            Customer = customer;
+            Customer = OrderCustomer.FromCustomer(customer);
         }
 
-        public static Order Create(IEnumerable<LineItem> lineItems, DateTime orderDate, OrderCustomer customer)
+        public static Order Create(IEnumerable<LineItem> lineItems, DateTime orderDate, Customer customer)
         {
             return new Order(lineItems, orderDate, customer);
         }
