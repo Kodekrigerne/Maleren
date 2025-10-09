@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Maleren.CrossCut;
 using Maleren.Domain.Products;
 
 namespace Maleren.Domain.Tests.ProductTests

@@ -1,4 +1,4 @@
-﻿using Maleren.Domain.Discount;
+﻿using Maleren.Domain.Discounts;
 using Maleren.Domain.LineItems;
 using Maleren.Domain.Orders;
 using Maleren.Domain.Products;

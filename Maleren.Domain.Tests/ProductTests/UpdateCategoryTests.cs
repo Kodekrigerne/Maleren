@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Maleren.CrossCut;
 using Maleren.Domain.Products;
 
 namespace Maleren.Domain.Tests.ProductTests
@@ -18,7 +19,7 @@ namespace Maleren.Domain.Tests.ProductTests
             var testProduct = new ProductTestFixture() { Price = 5, Category = currentCategory };
 
             //Act
-            testProduct.UpdateCategory(newCategory);
+            testProduct.Update(testProduct.Price, newCategory);
 
             //Assert
             Assert.That(testProduct.Category, Is.EqualTo(newCategory));
