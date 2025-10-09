@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Maleren.CrossCut;
 using Maleren.Domain.Products;
 
 namespace Maleren.Domain.Tests.ProductTests
@@ -17,7 +18,7 @@ namespace Maleren.Domain.Tests.ProductTests
             var testProduct = new ProductTestFixture { Price = 5, Category = ProductCategory.Maling };
 
             //Act & Assert
-            Assert.Throws<ProductNegativePriceException>(() => testProduct.UpdatePrice(price));
+            Assert.Throws<ProductNegativePriceException>(() => testProduct.Update(price, testProduct.Category));
         }
 
         [Test]
@@ -28,7 +29,7 @@ namespace Maleren.Domain.Tests.ProductTests
             var testProduct = new ProductTestFixture { Price = 5, Category = ProductCategory.Maling };
 
             //Act
-            testProduct.UpdatePrice(price);
+            testProduct.Update(price, testProduct.Category);
 
             //Assert
             Assert.That(testProduct.Price, Is.EqualTo(price));
@@ -42,7 +43,7 @@ namespace Maleren.Domain.Tests.ProductTests
             var testProduct = new ProductTestFixture { Price = 5, Category = ProductCategory.Maling };
 
             //Act
-            testProduct.UpdatePrice(price);
+            testProduct.Update(price, testProduct.Category);
 
             //Assert
             Assert.That(testProduct.Price, Is.EqualTo(price));
