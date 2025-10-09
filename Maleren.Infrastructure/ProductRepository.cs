@@ -12,28 +12,27 @@ namespace Maleren.Infrastructure
             _db = db;
         }
 
-        void IProductRepository.AddProduct(Product product)
+        async Task IProductRepository.AddProductAsync(Product product)
         {
-            _db.Products.Add(product);
-            _db.SaveChanges();
+            await _db.Products.AddAsync(product);
+            await _db.SaveChangesAsync();
         }
 
-        void IProductRepository.DeleteProduct(Product product)
+        async Task IProductRepository.DeleteProductAsync(Product product)
         {
             _db.Products.Remove(product);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
 
-        Product IProductRepository.GetProductByGuid(Guid id)
+        async Task<Product> IProductRepository.GetProductByGuidAsync(Guid id)
         {
-            var product = _db.Products.Find(id) ?? throw new Exception();
-
+            var product = await _db.Products.FindAsync(id) ?? throw new Exception();
             return product;
         }
 
-        void IProductRepository.SaveProduct(Product product)
+        async Task IProductRepository.SaveProductAsync(Product product)
         {
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
     }
 }

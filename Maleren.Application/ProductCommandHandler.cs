@@ -12,27 +12,27 @@ namespace Maleren.Application
             _repo = repo;
         }
 
-        void IProductCommand.CreateProduct(CreateProductCommand command)
+        async Task IProductCommand.CreateProductAsync(CreateProductCommand command)
         {
             var product = Product.Create(command.Price, command.ProductCategory);
 
-            _repo.AddProduct(product);
+            await _repo.AddProductAsync(product);
         }
 
-        void IProductCommand.DeleteProduct(DeleteProductCommand command)
+        async Task IProductCommand.DeleteProductAsync(DeleteProductCommand command)
         {
-            var product = _repo.GetProductByGuid(command.Id);
+            var product = await _repo.GetProductByGuidAsync(command.Id);
 
-            _repo.DeleteProduct(product);
+            await _repo.DeleteProductAsync(product);
         }
 
-        void IProductCommand.UpdateProduct(UpdateProductCommand command)
+        async Task IProductCommand.UpdateProductAsync(UpdateProductCommand command)
         {
-            var product = _repo.GetProductByGuid(command.Id);
+            var product = await _repo.GetProductByGuidAsync(command.Id);
 
             product.Update(command.Price, command.ProductCategory);
 
-            _repo.SaveProduct(product);
+            await _repo.SaveProductAsync(product);
         }
     }
 }

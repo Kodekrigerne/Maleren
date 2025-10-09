@@ -4,9 +4,9 @@ namespace Maleren.Ports.Driving
 {
     public interface IProductCommand
     {
-        void CreateProduct(CreateProductCommand command);
-        void UpdateProduct(UpdateProductCommand command);
-        void DeleteProduct(DeleteProductCommand command);
+        Task CreateProductAsync(CreateProductCommand command);
+        Task UpdateProductAsync(UpdateProductCommand command);
+        Task DeleteProductAsync(DeleteProductCommand command);
     }
 
     public record CreateProductCommand(decimal Price, ProductCategory ProductCategory);
