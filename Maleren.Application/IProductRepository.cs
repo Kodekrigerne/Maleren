@@ -5,8 +5,8 @@ namespace Maleren.Application
     public interface IProductRepository
     {
         Task AddProductAsync(Product product);
-        Task DeleteProductAsync(Product product);
+        void DeleteProduct(Product product);
         Task<Product> GetProductByGuidAsync(Guid id);
-        Task SaveProductAsync(Product product);
+        Task SaveChangesAsync();
     }
 }

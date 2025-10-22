@@ -17,13 +17,15 @@ namespace Maleren.Application
             var product = Product.Create(command.Price, command.ProductCategory);
 
             await _repo.AddProductAsync(product);
+            await _repo.SaveChangesAsync();
         }
 
         async Task IProductCommand.DeleteProductAsync(DeleteProductCommand command)
         {
             var product = await _repo.GetProductByGuidAsync(command.Id);
 
-            await _repo.DeleteProductAsync(product);
+            _repo.DeleteProduct(product);
+            await _repo.SaveChangesAsync();
         }
 
         async Task IProductCommand.UpdateProductAsync(UpdateProductCommand command)
@@ -32,7 +34,7 @@ namespace Maleren.Application
 
             product.Update(command.Price, command.ProductCategory);
 
-            await _repo.SaveProductAsync(product);
+            await _repo.SaveChangesAsync();
         }
     }
 }
