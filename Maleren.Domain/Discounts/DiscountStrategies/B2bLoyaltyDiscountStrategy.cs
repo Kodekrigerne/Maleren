@@ -35,10 +35,10 @@ namespace Maleren.Domain.Discounts.DiscountStrategies
             // TODO: Add Exception 
             if (_customerOrdersService is null) throw new ArgumentException();
 
-            if (order.Customer.CustomerType != CustomerType.B2B || Customer.Id != order.Customer.CustomerId)
+            if (order.Customer.CustomerType != CustomerType.B2B || Customer.Id != order.Customer.Id)
                 return new Discount(GetType().Name);
 
-            var orders = _customerOrdersService.GetOrders(order.Customer.CustomerId);
+            var orders = _customerOrdersService.GetOrders(order.Customer.Id);
 
 
             if (orders.Count(o => o.OrderDate >= order.OrderDate - NoOfMonths

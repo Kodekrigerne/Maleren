@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Maleren.Application;
+﻿using Maleren.Application;
 using Maleren.CrossCut;
 using Maleren.Domain.Products;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace Maleren.Infrastructure.Tests.ProductRepositoryTests
 {
@@ -47,6 +41,7 @@ namespace Maleren.Infrastructure.Tests.ProductRepositoryTests
 
             // Act
             repo.AddProductAsync(product);
+            repo.SaveChangesAsync();
 
             // Assert
             var actualProduct = _db.Products.First();
@@ -64,10 +59,12 @@ namespace Maleren.Infrastructure.Tests.ProductRepositoryTests
             var repo = new ProductRepository(_db) as IProductRepository;
             var product = Product.Create(300, ProductCategory.Maling);
             repo.AddProductAsync(product);
+            repo.SaveChangesAsync();
             var productToDelete = _db.Products.First();
 
             // Act
-            repo.DeleteProductAsync(productToDelete);
+            repo.DeleteProduct(productToDelete);
+            repo.SaveChangesAsync();
 
             // Assert
             var maybeNullProduct = _db.Products.Find(productToDelete.Id);
