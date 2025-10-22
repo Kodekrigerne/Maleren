@@ -34,7 +34,7 @@ namespace Maleren.Domain.Discounts.DiscountStrategies
 
             if (order.Customer.CustomerType != CustomerType.B2C) return new Discount(GetType().Name);
 
-            var orders = _customerOrdersService.GetOrders(order.Customer.Id);
+            var orders = _customerOrdersService.GetOrders(order.Customer.CustomerId);
 
             if (orders.Count(o => o.OrderDate >= order.OrderDate - NoOfMonths
                                   && o.CalculateOrderTotal() >= MinPriceOfOrder) >= NoOfOrders)

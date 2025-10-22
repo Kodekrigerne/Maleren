@@ -28,7 +28,7 @@ namespace Maleren.Domain.Discounts.DiscountStrategies
 
         Discount IDiscountStrategy.CalculateDiscount(Order order)
         {
-            if (order.Customer.CustomerType != CustomerType.B2B || order.Customer.Id != Customer.Id)
+            if (order.Customer.CustomerType != CustomerType.B2B || order.Customer.CustomerId != Customer.Id)
                 return new Discount(GetType().Name);
 
             var sum = 0m;

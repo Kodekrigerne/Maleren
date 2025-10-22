@@ -9,7 +9,8 @@ namespace Maleren.Domain.Orders
     {
         public IEnumerable<LineItem> LineItems { get; protected set; }
         public DateTime OrderDate { get; protected set; }
-        public OrderCustomer Customer { get; protected set; }
+        public Customer Customer { get; protected set; }
+        public CustomerSnapshot CustomerSnapshot { get; protected set; }
         public Discount? Discount { get; protected set; }
 
 #pragma warning disable CS8618 
@@ -20,7 +21,8 @@ namespace Maleren.Domain.Orders
         {
             LineItems = lineItems;
             OrderDate = orderDate;
-            Customer = OrderCustomer.FromCustomer(customer);
+            Customer = customer;
+            CustomerSnapshot = CustomerSnapshot.FromCustomer(customer);
         }
 
         public static Order Create(IEnumerable<LineItem> lineItems, DateTime orderDate, Customer customer)
