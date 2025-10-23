@@ -15,13 +15,11 @@ namespace Maleren.Infrastructure
         async Task IProductRepository.AddProductAsync(Product product)
         {
             await _db.Products.AddAsync(product);
-            await _db.SaveChangesAsync();
         }
 
-        async Task IProductRepository.DeleteProductAsync(Product product)
+        void IProductRepository.DeleteProduct(Product product)
         {
             _db.Products.Remove(product);
-            await _db.SaveChangesAsync();
         }
 
         async Task<Product> IProductRepository.GetProductByGuidAsync(Guid id)
@@ -30,7 +28,7 @@ namespace Maleren.Infrastructure
             return product;
         }
 
-        async Task IProductRepository.SaveProductAsync(Product product)
+        async Task IProductRepository.SaveChangesAsync()
         {
             await _db.SaveChangesAsync();
         }
