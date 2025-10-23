@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Maleren.Domain.Customers;
+﻿using Maleren.Domain.Customers;
 
 namespace Maleren.Domain.Orders
 {
-    [ComplexType]
     public record CustomerSnapshot
     {
-        public Guid CustomerId { get; }
-        public CustomerType CustomerType { get; }
+        public Guid CustomerId { get; private init; }
+        public CustomerType CustomerType { get; private init; }
 
         protected CustomerSnapshot() { }
 
